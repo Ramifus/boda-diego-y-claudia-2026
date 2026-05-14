@@ -31,69 +31,13 @@ const MAPS_URL    = "https://maps.app.goo.gl/qiYPpveC8x6ap4UW8";
     <p id="fecha-lugar" class="font-crimson mb-1" style="font-size: clamp(1.2rem, 5.5vw, 1.5rem); font-weight: 700; color: #2a2a2a;">{LUGAR}</p>
     <p id="fecha-dir" class="font-raleway mb-1" style="font-size: clamp(1rem, 4.5vw, 1.2rem); font-weight: 300; color: #888; letter-spacing: 0.03em;">{DIRECCION}</p>
     <p id="fecha-hora" class="font-raleway mb-6" style="font-size: clamp(1rem, 4.5vw, 1.2rem); font-weight: 300; color: #b8956a; letter-spacing: 0.05em;">13:00 hs</p>
-    <button id="fecha-btn"
-      class="w-full flex items-center justify-center gap-2 rounded-full py-3 px-6 font-raleway transition-all hover:opacity-85 active:scale-95"
-      style="background-color: #b8956a; color: #fff; font-size: clamp(0.85rem, 4vw, 1rem); font-weight: 400; letter-spacing: 0.05em; border: none; cursor: pointer;">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/>
-      </svg>
+    <a id="fecha-btn" href={MAPS_URL} target="_blank" rel="noopener noreferrer"
+      class="w-full flex items-center justify-center rounded-full py-3 px-6 font-raleway transition-opacity hover:opacity-80 active:opacity-70"
+      style="background-color: #b8956a; color: #fff; font-size: clamp(0.85rem, 4vw, 1rem); font-weight: 400; letter-spacing: 0.05em; text-decoration: none;">
       ¿Cómo llegar?
-    </button>
+    </a>
   </div>
 </section>
-
-<!-- Modal del mapa -->
-<div id="modal-mapa"
-  class="fixed inset-0 z-[99999] flex items-center justify-center px-4"
-  style="display: none !important; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(4px);"
->
-  <div class="relative w-full max-w-sm mx-auto rounded-2xl overflow-hidden"
-    style="background-color: #fff; border: 2px solid #b8956a;">
-
-    <!-- Header del modal -->
-    <div class="flex items-center justify-between px-5 py-4"
-      style="border-bottom: 1px solid #e0d5c5;">
-      <div>
-        <p class="font-crimson font-bold" style="font-size: 1.1rem; color: #2a2a2a;">{LUGAR}</p>
-        <p class="font-raleway" style="font-size: 0.8rem; color: #888; font-weight: 300;">{DIRECCION}</p>
-      </div>
-      <button id="btn-cerrar-mapa"
-        class="flex items-center justify-center rounded-full flex-shrink-0 ml-3"
-        style="width: 2rem; height: 2rem; background-color: #b8956a; border: none; cursor: pointer;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" class="w-4 h-4">
-          <path d="M18 6L6 18M6 6l12 12"/>
-        </svg>
-      </button>
-    </div>
-
-    <!-- Mapa embebido -->
-    <div style="height: 320px; width: 100%;">
-      <iframe
-        id="mapa-iframe"
-        width="100%"
-        height="100%"
-        style="border: none;"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        src=""
-        data-src={`https://maps.google.com/maps?q=${encodeURIComponent(LUGAR + ', ' + DIRECCION)}&output=embed&z=16&hl=es`}
-      ></iframe>
-    </div>
-
-    <!-- Botón abrir en Google Maps -->
-    <div class="px-5 py-4">
-      <a href={MAPS_URL} target="_blank" rel="noopener noreferrer"
-        class="w-full flex items-center justify-center gap-2 rounded-full py-2.5 font-raleway"
-        style="background-color: #f7f0e8; color: #b8956a; font-size: 0.9rem; font-weight: 400; text-decoration: none; border: 1px solid #e0d5c5;">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-        </svg>
-        Abrir en Google Maps
-      </a>
-    </div>
-
-  </div>
-</div>
 
 <script>
   import { gsap } from "gsap";
@@ -122,30 +66,6 @@ const MAPS_URL    = "https://maps.app.goo.gl/qiYPpveC8x6ap4UW8";
     gsap.set("#fecha-btn",     { opacity: 0, y: 20 });
   }
 
-  // ── Modal del mapa ──────────────────────────────────────
-  const modalMapa   = document.getElementById("modal-mapa");
-  const btnAbrir    = document.getElementById("fecha-btn");
-  const btnCerrar   = document.getElementById("btn-cerrar-mapa");
-  const iframe      = document.getElementById("mapa-iframe") as HTMLIFrameElement;
-
-  btnAbrir?.addEventListener("click", () => {
-    // Cargar el iframe solo cuando se abre (lazy load real)
-    if (iframe && !iframe.src) {
-      iframe.src = iframe.dataset.src || "";
-    }
-    modalMapa!.style.display = "flex";
-    document.body.style.overflow = "hidden";
-  });
-
-  function cerrarMapa() {
-    modalMapa!.style.display = "none";
-    document.body.style.overflow = "";
-  }
-
-  btnCerrar?.addEventListener("click", cerrarMapa);
-  modalMapa?.addEventListener("click", (e) => { if (e.target === modalMapa) cerrarMapa(); });
-
-  // ── Animación scroll ─────────────────────────────────────
   new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (!e.isIntersecting) {
