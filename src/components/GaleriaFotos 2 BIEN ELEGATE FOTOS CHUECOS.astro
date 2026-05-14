@@ -1,0 +1,183 @@
+---
+const fotos = [
+  "/imagenes/foto1.png",
+  "/imagenes/foto2.png",
+  "/imagenes/foto3.png",
+  "/imagenes/foto4.png",
+  "/imagenes/foto5.png",
+  "/imagenes/foto6.png",
+  "/imagenes/foto7.png",
+  "/imagenes/foto8.png",
+  "/imagenes/foto9.png",
+];
+
+// Alternamos alturas para ritmo visual elegante
+const alturas = [300, 240, 300, 260, 300, 240, 260, 300, 240];
+// Leve rotación alterna para aspecto de fotos impresas
+const rotaciones = [-2, 1.5, -1, 2, -1.5, 1, -2, 1.5, -1];
+---
+
+<section class="relative w-full" style="background-color: #ffffff;">
+
+  <!-- Flores arriba -->
+  <img id="gal-flores-top" src="/imagenes/flores.png" alt="" aria-hidden="true"
+    class="absolute left-0 right-0 w-full pointer-events-none select-none"
+    style="top: -30px; transform: scaleY(-1); z-index: 20;" loading="eager"/>
+
+  <!-- Flores abajo -->
+  <img id="gal-flores-bot" src="/imagenes/flores.png" alt="" aria-hidden="true"
+    class="absolute left-0 right-0 w-full pointer-events-none select-none"
+    style="bottom: -30px; z-index: 20;" loading="eager"/>
+
+  <!-- Contenido interior -->
+  <div id="gal-seccion" class="relative flex flex-col items-center pt-20 pb-24">
+
+    <div class="text-center px-8 mb-10">
+      <p id="gal-label"
+        class="font-raleway uppercase tracking-[0.3em] mb-3"
+        style="font-size: clamp(0.65rem, 3vw, 0.8rem); color: #b8956a; font-weight: 300;"
+      >Momentos especiales</p>
+
+      <h2 id="gal-titulo"
+        class="font-crimson uppercase tracking-[0.2em] mb-3"
+        style="font-size: clamp(1.3rem, 6vw, 1.7rem); font-weight: 700; color: #b8956a;"
+      >Retratos de nuestro amor</h2>
+
+      <div id="gal-icono" class="flex items-center justify-center gap-3 mt-2">
+        <div style="height:1px; width:3rem; background-color:#e0d5c5;"></div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+          stroke="#b8956a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+          class="w-6 h-6">
+          <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        <div style="height:1px; width:3rem; background-color:#e0d5c5;"></div>
+      </div>
+
+      <p
+        class="font-raleway mt-3"
+        style="font-size: clamp(1.1rem, 5vw, 1.3rem); color: #aaa; font-weight: 300; letter-spacing: 0.04em;"
+      >
+        La clave es disfrutar cada momento
+      </p>
+    </div>
+
+    <!-- Carrusel elegante -->
+    <div id="gal-carrusel"
+      class="w-full overflow-hidden"
+      style="mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);"
+    >
+      <div class="carrusel-track flex items-center gap-5" style="width: max-content; padding: 20px 0;">
+
+        <!-- Fotos originales -->
+        {fotos.map((src, i) => (
+          <div
+            class="carrusel-item flex-shrink-0 overflow-hidden"
+            style={`
+              width: 185px;
+              height: ${alturas[i]}px;
+              border-radius: 12px;
+              transform: rotate(${rotaciones[i]}deg);
+              box-shadow: 0 10px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.1);
+              border: 6px solid #fff;
+              outline: 1px solid #e8e0d5;
+            `}
+          >
+            <img
+              src={src}
+              alt={`Foto ${i + 1}`}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        ))}
+
+        <!-- Duplicadas para loop infinito -->
+        {fotos.map((src, i) => (
+          <div
+            class="carrusel-item flex-shrink-0 overflow-hidden"
+            style={`
+              width: 185px;
+              height: ${alturas[i]}px;
+              border-radius: 12px;
+              transform: rotate(${rotaciones[i]}deg);
+              box-shadow: 0 10px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.1);
+              border: 6px solid #fff;
+              outline: 1px solid #e8e0d5;
+            `}
+          >
+            <img
+              src={src}
+              alt={`Foto ${i + 1}`}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        ))}
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  const seccion = document.getElementById("gal-seccion");
+
+  gsap.set("#gal-flores-top", { opacity: 0, y: -40 });
+  gsap.set("#gal-flores-bot", { opacity: 0, y: 40 });
+  gsap.set("#gal-label",      { opacity: 0, y: 20 });
+  gsap.set("#gal-titulo",     { opacity: 0, scale: 0.85 });
+  gsap.set("#gal-icono",      { opacity: 0, scale: 0 });
+  gsap.set("#gal-subtitulo",  { opacity: 0, y: 20 });
+  gsap.set("#gal-carrusel",   { opacity: 0, y: 40 });
+
+  let lastY = window.scrollY, bajando = true;
+  window.addEventListener("scroll", () => { bajando = window.scrollY >= lastY; lastY = window.scrollY; }, { passive: true });
+
+  function resetGal() {
+    gsap.set("#gal-seccion",    { opacity: 0, y: 50 });
+    gsap.set("#gal-flores-top", { opacity: 0, y: -40 });
+    gsap.set("#gal-flores-bot", { opacity: 0, y: 40 });
+    gsap.set("#gal-label",      { opacity: 0, y: 20 });
+    gsap.set("#gal-titulo",     { opacity: 0, scale: 0.85 });
+    gsap.set("#gal-icono",      { opacity: 0, scale: 0 });
+    gsap.set("#gal-subtitulo",  { opacity: 0, y: 20 });
+    gsap.set("#gal-carrusel",   { opacity: 0, y: 40 });
+  }
+
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) {
+        if (e.boundingClientRect.top > 0) resetGal();
+        return;
+      }
+      if (!bajando) return;
+      const tl = gsap.timeline();
+      tl.to("#gal-seccion",    { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0)
+        .to("#gal-flores-top", { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 0)
+        .to("#gal-flores-bot", { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 0)
+        .to("#gal-label",      { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 0.2)
+        .to("#gal-titulo",     { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.4)" }, 0.3)
+        .to("#gal-icono",      { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(2)" }, 0.45)
+        .to("#gal-subtitulo",  { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.55)
+        .to("#gal-carrusel",   { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 0.65);
+    });
+  }, { threshold: 0.1 }).observe(seccion!);
+</script>
+
+<style>
+  .carrusel-track {
+    animation: deslizar 45s linear infinite;
+  }
+
+  .carrusel-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes deslizar {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>

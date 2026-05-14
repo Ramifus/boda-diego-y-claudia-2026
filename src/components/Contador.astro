@@ -1,0 +1,170 @@
+---
+// Fecha objetivo: sábado 22 de agosto de 2026 a las 13:00
+---
+
+<section class="relative w-full flex items-center justify-center py-10">
+
+  <!-- Tarjeta blanca -->
+  <div id="cnt-card" class="relative w-full flex flex-col items-center justify-center text-center py-16 px-6"
+    style="background-color: #ffffff; min-height: 300px;">
+
+    <!-- Flores arriba -->
+    <img id="cnt-flores-top"
+      src="/imagenes/flores.png" alt=""
+      class="absolute left-0 right-0 w-full pointer-events-none select-none"
+      style="top: -30px; transform: scaleY(-1); z-index: 10;"
+      loading="eager" aria-hidden="true"
+    />
+
+    <!-- Flores abajo -->
+    <img id="cnt-flores-bot"
+      src="/imagenes/flores.png" alt=""
+      class="absolute left-0 right-0 w-full pointer-events-none select-none"
+      style="bottom: -30px; z-index: 10;"
+      loading="eager" aria-hidden="true"
+    />
+
+    <!-- Texto "Faltan" -->
+    <p id="cnt-faltan" class="font-great-vibes mb-6" style="font-size: clamp(2rem, 9vw, 2.8rem); color: #b8956a;">
+      Faltan
+    </p>
+
+    <!-- Números del contador -->
+    <div class="flex items-start justify-center gap-0 mb-6">
+
+      <div id="cnt-col-dias" class="flex flex-col items-center px-4">
+        <span id="cnt-dias" class="font-crimson font-bold" style="font-size: clamp(2.4rem, 11vw, 3.5rem); color: #2a2a2a; line-height: 1;">00</span>
+        <span class="font-raleway mt-1" style="font-size: clamp(0.75rem, 3.5vw, 0.9rem); color: #888; font-weight: 300; letter-spacing: 0.05em;">Días</span>
+      </div>
+
+      <div id="cnt-sep1" class="self-stretch" style="width: 1px; background-color: #ccc; margin-top: 4px; margin-bottom: 20px;"></div>
+
+      <div id="cnt-col-horas" class="flex flex-col items-center px-4">
+        <span id="cnt-horas" class="font-crimson font-bold" style="font-size: clamp(2.4rem, 11vw, 3.5rem); color: #2a2a2a; line-height: 1;">00</span>
+        <span class="font-raleway mt-1" style="font-size: clamp(0.75rem, 3.5vw, 0.9rem); color: #888; font-weight: 300; letter-spacing: 0.05em;">hr</span>
+      </div>
+
+      <div id="cnt-sep2" class="self-stretch" style="width: 1px; background-color: #ccc; margin-top: 4px; margin-bottom: 20px;"></div>
+
+      <div id="cnt-col-min" class="flex flex-col items-center px-4">
+        <span id="cnt-min" class="font-crimson font-bold" style="font-size: clamp(2.4rem, 11vw, 3.5rem); color: #2a2a2a; line-height: 1;">00</span>
+        <span class="font-raleway mt-1" style="font-size: clamp(0.75rem, 3.5vw, 0.9rem); color: #888; font-weight: 300; letter-spacing: 0.05em;">min</span>
+      </div>
+
+      <div id="cnt-sep3" class="self-stretch" style="width: 1px; background-color: #ccc; margin-top: 4px; margin-bottom: 20px;"></div>
+
+      <div id="cnt-col-seg" class="flex flex-col items-center px-4">
+        <span id="cnt-seg" class="font-crimson font-bold" style="font-size: clamp(2.4rem, 11vw, 3.5rem); color: #2a2a2a; line-height: 1;">00</span>
+        <span class="font-raleway mt-1" style="font-size: clamp(0.75rem, 3.5vw, 0.9rem); color: #888; font-weight: 300; letter-spacing: 0.05em;">seg</span>
+      </div>
+
+    </div>
+
+    <!-- Corazón -->
+    <div id="cnt-corazon" style="font-size: 1.4rem; color: #b8956a;">♥</div>
+
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+
+  // ── Animaciones de entrada individuales ──────────────────
+  const card = document.getElementById("cnt-card");
+
+  const elementos = [
+    "#cnt-flores-top",
+    "#cnt-flores-bot",
+    "#cnt-faltan",
+    "#cnt-col-dias",
+    "#cnt-sep1",
+    "#cnt-col-horas",
+    "#cnt-sep2",
+    "#cnt-col-min",
+    "#cnt-sep3",
+    "#cnt-col-seg",
+    "#cnt-corazon",
+  ];
+
+  // Estado inicial invisible
+  gsap.set("#cnt-card",       { opacity: 0, y: 50 });
+  gsap.set("#cnt-flores-top", { opacity: 0, y: -40 });
+  gsap.set("#cnt-flores-bot", { opacity: 0, y: 40 });
+  gsap.set("#cnt-faltan",     { opacity: 0, scale: 0.6 });
+  gsap.set(["#cnt-col-dias","#cnt-col-horas","#cnt-col-min","#cnt-col-seg"], { opacity: 0, y: 35 });
+  gsap.set(["#cnt-sep1","#cnt-sep2","#cnt-sep3"], { opacity: 0, scaleY: 0 });
+  gsap.set("#cnt-corazon",    { opacity: 0, scale: 0 });
+
+  let lastY = window.scrollY;
+  let bajando = true;
+  window.addEventListener("scroll", () => {
+    bajando = window.scrollY >= lastY;
+    lastY = window.scrollY;
+  }, { passive: true });
+
+  function resetContador() {
+    gsap.set("#cnt-card",       { opacity: 0, y: 50 });
+    gsap.set("#cnt-flores-top", { opacity: 0, y: -40 });
+    gsap.set("#cnt-flores-bot", { opacity: 0, y: 40 });
+    gsap.set("#cnt-faltan",     { opacity: 0, scale: 0.6 });
+    gsap.set(["#cnt-col-dias","#cnt-col-horas","#cnt-col-min","#cnt-col-seg"], { opacity: 0, y: 35 });
+    gsap.set(["#cnt-sep1","#cnt-sep2","#cnt-sep3"], { opacity: 0, scaleY: 0 });
+    gsap.set("#cnt-corazon",    { opacity: 0, scale: 0 });
+  }
+
+  new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        // Solo resetear si el elemento quedó DEBAJO del viewport (aún no fue visto)
+        if (entry.boundingClientRect.top > 0) resetContador();
+        return;
+      }
+      if (!bajando) return;
+
+      const tl = gsap.timeline();
+      tl.to("#cnt-card",       { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0)
+        .to("#cnt-flores-top", { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 0)
+        .to("#cnt-flores-bot",  { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 0)
+        .to("#cnt-faltan", { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.4)" }, 0.15)
+        .to(["#cnt-col-dias","#cnt-col-horas","#cnt-col-min","#cnt-col-seg"], {
+          opacity: 1, y: 0, duration: 0.7, ease: "power2.out", stagger: 0.08,
+        }, 0.3)
+        .to(["#cnt-sep1","#cnt-sep2","#cnt-sep3"], {
+          opacity: 1, scaleY: 1, duration: 0.5, ease: "power2.out",
+          stagger: 0.06, transformOrigin: "top center",
+        }, 0.35)
+        .to("#cnt-corazon", { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(2)" }, 0.7);
+    });
+  }, { threshold: 0.15 }).observe(card!);
+
+  // ── Countdown ────────────────────────────────────────────
+  const FECHA_OBJETIVO = new Date("2026-08-22T13:00:00").getTime();
+
+  function pad(n: number): string {
+    return String(n).padStart(2, "0");
+  }
+
+  function actualizar() {
+    const diff = FECHA_OBJETIVO - Date.now();
+
+    if (diff <= 0) {
+      ["cnt-dias","cnt-horas","cnt-min","cnt-seg"].forEach(id => {
+        (document.getElementById(id) as HTMLElement).textContent = "00";
+      });
+      return;
+    }
+
+    const dias  = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const min   = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seg   = Math.floor((diff % (1000 * 60)) / 1000);
+
+    (document.getElementById("cnt-dias")  as HTMLElement).textContent = pad(dias);
+    (document.getElementById("cnt-horas") as HTMLElement).textContent = pad(horas);
+    (document.getElementById("cnt-min")   as HTMLElement).textContent = pad(min);
+    (document.getElementById("cnt-seg")   as HTMLElement).textContent = pad(seg);
+  }
+
+  actualizar();
+  setInterval(actualizar, 1000);
+</script>

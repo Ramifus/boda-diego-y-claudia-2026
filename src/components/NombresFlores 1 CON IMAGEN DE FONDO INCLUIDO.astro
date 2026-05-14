@@ -1,0 +1,190 @@
+---
+const NOMBRE_1 = "Diego";
+const NOMBRE_2 = "Claudia";
+const MES_ANO = "Agosto 2026";
+---
+
+<section
+  class="relative w-full min-h-screen flex flex-col overflow-hidden"
+>
+  <!-- Fondo: foto de la pareja -->
+  <div class="absolute inset-0 z-[1]">
+    <img
+      src="/imagenes/imagen1.png"
+      alt={`${NOMBRE_1} y ${NOMBRE_2}`}
+      class="w-full h-full object-cover object-center"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-black/45 z-[2]"></div>
+  </div>
+
+  <!-- Barra superior tipo periódico -->
+  <div
+    class="relative z-[10] mx-5 mt-5 py-2 px-1 flex items-center justify-between"
+    style="border-top: 1px solid rgba(255,255,255,0.7); border-bottom: 1px solid rgba(255,255,255,0.7);"
+  >
+    <div class="text-white text-sm" style="font-family:'Crimson Text',serif; line-height: 2;">
+      {NOMBRE_1} &amp;<br />{NOMBRE_2}
+    </div>
+    <div
+      class="text-white text-xs uppercase tracking-widest"
+      style="font-family:'Crimson Text',serif; letter-spacing:0.18em;"
+    >
+      Nuevas noticias
+    </div>
+    <div class="text-white text-sm" style="font-family:'Crimson Text',serif;">
+      {MES_ANO}
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
+  <div
+    class="relative z-[10] flex-1 flex flex-col items-center justify-center text-center px-6 pb-16 pt-8"
+  >
+    <!-- Línea superior del bloque de nombres -->
+    <div class="border-t border-white/70 mb-4" style="width: 9rem;"></div>
+
+    <!-- Bloque de nombres con & centrado -->
+    <div class="flex flex-col items-center">
+      <h1
+        class="font-crimson text-white"
+        style="font-size: clamp(4.5rem, 22vw, 7rem); font-weight: 700; line-height: 1; text-shadow: 0 2px 24px rgba(0,0,0,0.4);"
+      >
+        {NOMBRE_1}
+      </h1>
+
+      <span
+        class="font-great-vibes text-white"
+        style="font-size: clamp(2.5rem, 12vw, 4rem); line-height: 1; margin-top: 1rem; margin-bottom: 0.1rem;"
+      >
+        &amp;
+      </span>
+
+      <h1
+        class="font-crimson text-white"
+        style="font-size: clamp(4.5rem, 22vw, 7rem); font-weight: 700; line-height: 1; text-shadow: 0 2px 24px rgba(0,0,0,0.4);"
+      >
+        {NOMBRE_2}
+      </h1>
+    </div>
+
+    <!-- Línea inferior del bloque de nombres -->
+    <div class="border-t border-white/70 mt-4 mb-5" style="width: 9rem;"></div>
+
+    <!-- Subtítulo -->
+    <p
+      class="font-crimson text-white"
+      style="font-size: clamp(1.9rem, 9vw, 2.6rem); font-weight: 600;"
+    >
+      ¡Nuestra Boda!
+    </p>
+
+    <!-- Frase romántica -->
+    <p
+      class="font-raleway text-white/85 mt-3 max-w-xs"
+      style="font-size: clamp(1.2rem, 5.5vw, 1.5rem); font-weight: 200; letter-spacing: 0.04em;"
+    >
+      Te elijo hoy y por el resto de mi vida
+    </p>
+
+    <!-- Flecha scroll -->
+    <div class="mt-8 flex flex-col items-center gap-1" id="flecha-scroll">
+      <svg
+        class="w-7 h-7 text-white/70"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        viewBox="0 0 24 24"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+      </svg>
+      <svg
+        class="w-7 h-7 text-white/40"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        viewBox="0 0 24 24"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 🎵 Botón flotante de música -->
+  <div class="fixed bottom-6 right-6 z-[9999]" id="boton-musica-flotante">
+    <button
+      id="toggle-musica-global"
+      class="group relative w-14 h-14 bg-white/80 hover:bg-white/90 backdrop-blur-md rounded-full shadow-lg hover:shadow-2xl flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 border border-white/40"
+      aria-label="Controlar música"
+    >
+      <svg
+        id="icono-pause-global"
+        class="w-6 h-6 text-[#0F3D2E] relative z-10"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M5.5 3.5A1.5 1.5 0 017 2h1a1.5 1.5 0 011.5 1.5v13A1.5 1.5 0 018 18H7a1.5 1.5 0 01-1.5-1.5v-13zm7 0A1.5 1.5 0 0114 2h1a1.5 1.5 0 011.5 1.5v13a1.5 1.5 0 01-1.5 1.5h-1a1.5 1.5 0 01-1.5-1.5v-13z"
+        ></path>
+      </svg>
+      <svg
+        id="icono-play-global"
+        class="w-6 h-6 text-[#0F3D2E] hidden relative z-10"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"
+        ></path>
+      </svg>
+      <div
+        class="absolute -inset-2 rounded-full border-2 border-white/40"
+        id="onda-sonido"
+        style="animation: ping-slow 2s cubic-bezier(0,0,0.2,1) infinite;"
+      ></div>
+    </button>
+  </div>
+</section>
+
+<style>
+  @keyframes ping-slow {
+    0% { transform: scale(1); opacity: 0.5; }
+    75%, 100% { transform: scale(1.3); opacity: 0; }
+  }
+  @keyframes bounce-arrow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+  #flecha-scroll {
+    animation: bounce-arrow 1.6s ease-in-out infinite;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const botonToggle = document.getElementById("toggle-musica-global");
+    const iconoPlay = document.getElementById("icono-play-global");
+    const iconoPause = document.getElementById("icono-pause-global");
+    const ondaSonido = document.getElementById("onda-sonido");
+
+    botonToggle?.addEventListener("click", () => {
+      const audioActual = (window as any).audioGlobal;
+      const estadoActual = (window as any).estaReproduciendoGlobal;
+
+      if (estadoActual && audioActual) {
+        audioActual.pause();
+        (window as any).estaReproduciendoGlobal = false;
+        iconoPause?.classList.add("hidden");
+        iconoPlay?.classList.remove("hidden");
+        if (ondaSonido) ondaSonido.style.animationPlayState = "paused";
+      } else if (audioActual) {
+        audioActual.play().catch((e: any) => console.log("Error audio:", e));
+        (window as any).estaReproduciendoGlobal = true;
+        iconoPlay?.classList.add("hidden");
+        iconoPause?.classList.remove("hidden");
+        if (ondaSonido) ondaSonido.style.animationPlayState = "running";
+      }
+    });
+  });
+</script>

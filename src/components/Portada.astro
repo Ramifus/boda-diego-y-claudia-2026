@@ -1,0 +1,90 @@
+---
+// src/components/Portada.astro - Video intro a pantalla completa
+---
+
+<!-- Audio de fondo (se activa al terminar el video) -->
+<audio
+    id="audio-portada"
+    src="/musica/melodia.mp3"
+    preload="auto"
+    loop
+    style="display:none"></audio>
+
+<!-- Portada: video full-screen -->
+<section
+    class="fixed inset-0 w-full h-screen z-[10000]"
+    id="portada-section"
+    style="background-color: #000;"
+>
+    <video
+        id="video-portada"
+        class="absolute inset-0 w-full h-full object-cover"
+        src="/video/intro.mp4"
+        autoplay
+        muted
+        playsinline
+        preload="auto"
+    ></video>
+</section>
+
+<style>
+    body.portada-activa {
+        overflow: hidden !important;
+        height: 100vh !important;
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+
+    if (typeof window !== "undefined") {
+        document.addEventListener("DOMContentLoaded", () => {
+            document.body.classList.add("portada-activa");
+
+            const video = document.getElementById(
+                "video-portada",
+            ) as HTMLVideoElement | null;
+            const portadaSection = document.getElementById("portada-section");
+            const audioEl = document.getElementById(
+                "audio-portada",
+            ) as HTMLAudioElement | null;
+
+            function transicionAContenido() {
+                // Iniciar música de fondo
+                if (audioEl) {
+                    audioEl.loop = true;
+                    audioEl.volume = 0.5;
+                    audioEl.currentTime = 0;
+                    const playPromise = audioEl.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(() => {
+                            setTimeout(() => audioEl.play().catch(() => {}), 300);
+                        });
+                    }
+                    (window as any).audioGlobal = audioEl;
+                    (window as any).estaReproduciendoGlobal = true;
+                }
+
+                // Fade out de la portada con GSAP
+                gsap.to(portadaSection, {
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.in",
+                    onStart: () => {
+                        document.body.classList.remove("portada-activa");
+                    },
+                    onComplete: () => {
+                        portadaSection?.remove();
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                    },
+                });
+            }
+
+            // Al terminar el video → transición automática
+            video?.addEventListener("ended", transicionAContenido);
+
+            // Fallback: si el video falla en reproducir, transición igual
+            video?.addEventListener("error", transicionAContenido);
+        });
+    }
+</script>
