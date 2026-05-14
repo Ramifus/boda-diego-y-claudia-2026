@@ -20,30 +20,11 @@
         id="video-portada"
         class="absolute inset-0 w-full h-full object-cover"
         src="/video/intro.mp4"
+        autoplay
         muted
         playsinline
         preload="auto"
     ></video>
-
-    <!-- Overlay "Toca para comenzar" -->
-    <div
-        id="overlay-inicio"
-        class="absolute inset-0 flex flex-col items-center justify-center z-[10]"
-        style="background-color: rgba(0,0,0,0.55); cursor: pointer;"
-    >
-        <!-- Ícono de play -->
-        <div
-            class="flex items-center justify-center rounded-full mb-5"
-            style="width: 5rem; height: 5rem; border: 2px solid rgba(255,255,255,0.8); background-color: rgba(255,255,255,0.15);"
-        >
-            <svg viewBox="0 0 24 24" fill="white" class="w-8 h-8" style="margin-left: 4px;">
-                <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
-            </svg>
-        </div>
-        <p style="font-family: 'Crimson Text', serif; font-size: clamp(1.1rem, 5vw, 1.4rem); color: rgba(255,255,255,0.9); letter-spacing: 0.15em; font-weight: 400;">
-            Toca para comenzar
-        </p>
-    </div>
 </section>
 
 <style>
@@ -60,21 +41,16 @@
         document.addEventListener("DOMContentLoaded", () => {
             document.body.classList.add("portada-activa");
 
-            const video      = document.getElementById("video-portada") as HTMLVideoElement | null;
+            const video = document.getElementById(
+                "video-portada",
+            ) as HTMLVideoElement | null;
             const portadaSection = document.getElementById("portada-section");
-            const audioEl    = document.getElementById("audio-portada") as HTMLAudioElement | null;
-            const overlay    = document.getElementById("overlay-inicio");
-
-            // Pulso suave en el botón de play
-            gsap.to(overlay?.querySelector("div") ?? [], {
-                scale: 1.08,
-                duration: 1.2,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut",
-            });
+            const audioEl = document.getElementById(
+                "audio-portada",
+            ) as HTMLAudioElement | null;
 
             function transicionAContenido() {
+                // Iniciar música de fondo
                 if (audioEl) {
                     audioEl.loop = true;
                     audioEl.volume = 0.5;
@@ -89,6 +65,7 @@
                     (window as any).estaReproduciendoGlobal = true;
                 }
 
+                // Fade out de la portada con GSAP
                 gsap.to(portadaSection, {
                     opacity: 0,
                     duration: 0.8,
@@ -103,30 +80,10 @@
                 });
             }
 
-            // Al tocar el overlay → desbloquear audio, ocultar overlay y arrancar video
-            overlay?.addEventListener("click", () => {
-                // Desbloquear audio con interacción del usuario
-                if (audioEl) {
-                    audioEl.load();
-                }
-
-                // Ocultar overlay con fade
-                gsap.to(overlay, {
-                    opacity: 0,
-                    duration: 0.5,
-                    ease: "power2.out",
-                    onComplete: () => {
-                        overlay.style.display = "none";
-                        // Iniciar video
-                        video?.play().catch(() => {});
-                    },
-                });
-            });
-
             // Al terminar el video → transición automática
             video?.addEventListener("ended", transicionAContenido);
 
-            // Fallback: si el video falla, transición igual
+            // Fallback: si el video falla en reproducir, transición igual
             video?.addEventListener("error", transicionAContenido);
         });
     }
