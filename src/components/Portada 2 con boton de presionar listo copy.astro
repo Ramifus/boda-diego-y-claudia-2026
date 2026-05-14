@@ -22,7 +22,8 @@
         src="/video/intro.mp4"
         muted
         playsinline
-        preload="auto"></video>
+        preload="auto"
+    ></video>
 
     <!-- Overlay "Toca para comenzar" -->
     <div
@@ -35,20 +36,11 @@
             class="flex items-center justify-center rounded-full mb-5"
             style="width: 5rem; height: 5rem; border: 2px solid rgba(255,255,255,0.8); background-color: rgba(255,255,255,0.15);"
         >
-            <svg
-                viewBox="0 0 24 24"
-                fill="white"
-                class="w-8 h-8"
-                style="margin-left: 4px;"
-            >
-                <path
-                    d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"
-                ></path>
+            <svg viewBox="0 0 24 24" fill="white" class="w-8 h-8" style="margin-left: 4px;">
+                <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
             </svg>
         </div>
-        <p
-            style="font-family: 'Crimson Text', serif; font-size: clamp(1.1rem, 5vw, 1.4rem); color: rgba(255,255,255,0.9); letter-spacing: 0.15em; font-weight: 400;"
-        >
+        <p style="font-family: 'Crimson Text', serif; font-size: clamp(1.1rem, 5vw, 1.4rem); color: rgba(255,255,255,0.9); letter-spacing: 0.15em; font-weight: 400;">
             Toca para comenzar
         </p>
     </div>
@@ -68,14 +60,10 @@
         document.addEventListener("DOMContentLoaded", () => {
             document.body.classList.add("portada-activa");
 
-            const video = document.getElementById(
-                "video-portada",
-            ) as HTMLVideoElement | null;
+            const video      = document.getElementById("video-portada") as HTMLVideoElement | null;
             const portadaSection = document.getElementById("portada-section");
-            const audioEl = document.getElementById(
-                "audio-portada",
-            ) as HTMLAudioElement | null;
-            const overlay = document.getElementById("overlay-inicio");
+            const audioEl    = document.getElementById("audio-portada") as HTMLAudioElement | null;
+            const overlay    = document.getElementById("overlay-inicio");
 
             // Pulso suave en el botón de play
             gsap.to(overlay?.querySelector("div") ?? [], {
@@ -94,10 +82,7 @@
                     const playPromise = audioEl.play();
                     if (playPromise !== undefined) {
                         playPromise.catch(() => {
-                            setTimeout(
-                                () => audioEl.play().catch(() => {}),
-                                300,
-                            );
+                            setTimeout(() => audioEl.play().catch(() => {}), 300);
                         });
                     }
                     (window as any).audioGlobal = audioEl;

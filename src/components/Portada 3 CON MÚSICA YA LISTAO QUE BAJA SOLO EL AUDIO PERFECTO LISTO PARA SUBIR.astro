@@ -20,7 +20,6 @@
         id="video-portada"
         class="absolute inset-0 w-full h-full object-cover"
         src="/video/intro.mp4"
-        muted
         playsinline
         preload="auto"></video>
 
@@ -136,6 +135,21 @@
                         video?.play().catch(() => {});
                     },
                 });
+            });
+
+            // Fade out del volumen del video 3 segundos antes del final
+            let fadeIniciado = false;
+            video?.addEventListener("timeupdate", () => {
+                if (!video.duration) return;
+                const restante = video.duration - video.currentTime;
+                if (restante <= 6 && !fadeIniciado) {
+                    fadeIniciado = true;
+                    gsap.to(video, {
+                        volume: 0,
+                        duration: 5.8,
+                        ease: "power1.in",
+                    });
+                }
             });
 
             // Al terminar el video → transición automática
