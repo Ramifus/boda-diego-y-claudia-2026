@@ -1,0 +1,184 @@
+---
+const tips = [
+  "¡Por favor, ser puntuales!",
+  "Confirmar asistencia a la brevedad, antes de la fecha 15 de junio",
+  "Llevar zapatos cómodos ya que el lugar cuenta con un amplio cesped",
+  "Olvidarse de todo y ¡a disfrutar!",
+];
+---
+
+<!-- ═══════ TARJETA PRINCIPAL ═══════ -->
+<section class="relative w-full flex items-center justify-center py-16 px-5">
+
+  <div id="tips-card"
+    class="relative w-full max-w-xs mx-auto flex flex-col items-center text-center rounded-2xl shadow-2xl px-8 py-10"
+    style="background-color: rgba(255,255,255,0.96);"
+  >
+
+    <!-- Título -->
+    <h2 id="tips-titulo"
+      class="font-crimson uppercase tracking-[0.2em] mb-5"
+      style="font-size: clamp(1.3rem, 6vw, 1.7rem); font-weight: 700; color: #C9A545;"
+    >Tips y Notas</h2>
+
+    <!-- Ícono portapapeles -->
+    <div id="tips-icono" class="mb-5 flex items-center justify-center">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#C9A545" stroke-width="1.4"
+        stroke-linecap="round" stroke-linejoin="round" class="w-16 h-16">
+        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+        <rect x="9" y="3" width="6" height="4" rx="1"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+    </div>
+
+    <!-- Línea separadora -->
+    <div id="tips-sep" class="w-full mb-5" style="height: 1px; background-color: #F2D5DC;"></div>
+
+    <!-- Descripción -->
+    <p id="tips-desc"
+      class="font-raleway mb-7"
+      style="font-size: clamp(0.95rem, 4.5vw, 1.1rem); font-weight: 300; color: #C27587; letter-spacing: 0.02em;"
+    >Información adicional<br/>a considerar</p>
+
+    <!-- Botón Ver más -->
+    <button id="btn-tips-abrir"
+      class="w-full flex items-center justify-center rounded-full py-3 px-6 font-raleway transition-all hover:opacity-85 active:scale-95"
+      style="background-color: #C27587; color: #fff; font-size: clamp(0.9rem, 4vw, 1.05rem); font-weight: 400; letter-spacing: 0.06em; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(194,117,135,0.4);"
+    >
+      Ver más
+    </button>
+
+  </div>
+</section>
+
+<!-- ═══════ MODAL ═══════ -->
+<div id="modal-tips"
+  class="fixed inset-0 flex items-center justify-center z-[99999] px-5"
+  style="display: none !important; background-color: rgba(0,0,0,0.65); backdrop-filter: blur(4px);"
+>
+  <div class="relative w-full max-w-xs mx-auto" style="max-height: 90vh;">
+
+    <!-- Flores arriba (detrás del card) -->
+    <img
+      src="/imagenes/flores.png"
+      alt="" aria-hidden="true"
+      class="absolute left-0 right-0 w-full pointer-events-none select-none"
+      style="top: 0; transform: scaleY(-1); z-index: 0;"
+    />
+
+    <!-- Círculo con ícono portapapeles -->
+    <div class="absolute left-1/2 flex items-center justify-center rounded-full"
+      style="width: 5rem; height: 5rem;
+             background-color: #fff; border: 2px solid #C9A545;
+             box-shadow: 0 4px 16px rgba(201,165,69,0.25);
+             transform: translateX(-50%);
+             top: 42px; z-index: 5;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#C9A545" stroke-width="1.4"
+        stroke-linecap="round" stroke-linejoin="round" class="w-9 h-9">
+        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+        <rect x="9" y="3" width="6" height="4" rx="1"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+    </div>
+
+    <!-- Card blanco -->
+    <div
+      class="relative flex flex-col items-center text-center rounded-2xl"
+      style="background-color: #fffaf7; z-index: 1; margin-top: 70px;
+             max-height: calc(90vh - 70px); overflow-y: auto;
+             border: 1.5px solid #C9A545; padding: 4.5rem 1.5rem 1.5rem;"
+    >
+
+      <!-- Botón cerrar -->
+      <button id="btn-tips-cerrar"
+        class="absolute flex items-center justify-center rounded-full"
+        style="top: 0.7rem; right: 0.7rem; width: 1.9rem; height: 1.9rem;
+               background-color: #C27587; border: none; cursor: pointer; z-index: 20;"
+        aria-label="Cerrar"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"
+          stroke-linecap="round" class="w-3.5 h-3.5">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <!-- Título modal -->
+      <h3 class="font-great-vibes mb-5"
+        style="font-size: clamp(1.8rem, 8vw, 2.2rem); color: #C9A545;">
+        Tips y Notas
+      </h3>
+
+      <!-- Lista de tips -->
+      <ul class="w-full text-left" style="list-style: none; padding: 0;">
+        {tips.map(tip => (
+          <li class="font-raleway mb-4 flex items-start gap-3"
+            style="font-size: clamp(0.9rem, 4vw, 1rem); font-weight: 300; color: #C27587; line-height: 1.6;">
+            <span style="color: #C9A545; font-size: 1.1rem; margin-top: 1px; flex-shrink: 0;">•</span>
+            <span>{tip}</span>
+          </li>
+        ))}
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+
+  const card = document.getElementById("tips-card");
+
+  gsap.set("#tips-card",   { opacity: 0, y: 50 });
+  gsap.set("#tips-titulo", { opacity: 0, scale: 0.85 });
+  gsap.set("#tips-icono",  { opacity: 0, y: -20, scale: 0.7 });
+  gsap.set("#tips-sep",    { opacity: 0, scaleX: 0 });
+  gsap.set("#tips-desc",   { opacity: 0, y: 20 });
+  gsap.set("#btn-tips-abrir", { opacity: 0, y: 20 });
+
+  let lastY = window.scrollY, bajando = true;
+  window.addEventListener("scroll", () => { bajando = window.scrollY >= lastY; lastY = window.scrollY; }, { passive: true });
+
+  function resetTips() {
+    gsap.set("#tips-card",   { opacity: 0, y: 50 });
+    gsap.set("#tips-titulo", { opacity: 0, scale: 0.85 });
+    gsap.set("#tips-icono",  { opacity: 0, y: -20, scale: 0.7 });
+    gsap.set("#tips-sep",    { opacity: 0, scaleX: 0 });
+    gsap.set("#tips-desc",   { opacity: 0, y: 20 });
+    gsap.set("#btn-tips-abrir", { opacity: 0, y: 20 });
+  }
+
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) {
+        if (e.boundingClientRect.top > 0) resetTips();
+        return;
+      }
+      if (!bajando) return;
+      const tl = gsap.timeline();
+      tl.to("#tips-card",   { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0)
+        .to("#tips-titulo", { opacity: 1, scale: 1, duration: 0.7, ease: "back.out(1.4)" }, 0.1)
+        .to("#tips-icono",  { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "back.out(1.5)" }, 0.2)
+        .to("#tips-sep",    { opacity: 1, scaleX: 1, duration: 0.6, ease: "power2.out", transformOrigin: "left" }, 0.35)
+        .to("#tips-desc",   { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.45)
+        .to("#btn-tips-abrir", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.6);
+    });
+  }, { threshold: 0.2 }).observe(card!);
+
+  // Modal
+  const modal    = document.getElementById("modal-tips");
+  const btnAbrir = document.getElementById("btn-tips-abrir");
+  const btnCerrar = document.getElementById("btn-tips-cerrar");
+
+  btnAbrir?.addEventListener("click", () => {
+    modal!.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  });
+
+  function cerrar() {
+    modal!.style.display = "none";
+    document.body.style.overflow = "";
+  }
+
+  btnCerrar?.addEventListener("click", cerrar);
+  modal?.addEventListener("click", (e) => { if (e.target === modal) cerrar(); });
+</script>

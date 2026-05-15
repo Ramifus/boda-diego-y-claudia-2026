@@ -10,21 +10,21 @@
   >
     <h2 id="vest-titulo"
       class="font-crimson uppercase tracking-[0.2em] mb-5"
-      style="font-size: clamp(1.3rem, 6vw, 1.7rem); font-weight: 700; color: #b8956a;"
-    >Dress Code</h2>
+      style="font-size: clamp(1.1rem, 5vw, 1.4rem); font-weight: 700; color: #C9A545;"
+    >Código de Vestimenta</h2>
 
     <img id="vest-corbata" src="/imagenes/corbata.png" alt="Corbata" class="corbata-icon mb-5 w-16 h-16 object-contain" />
 
-    <div id="vest-sep" class="w-full mb-5" style="height: 1px; background-color: #e0d5c5;"></div>
+    <div id="vest-sep" class="w-full mb-5" style="height: 1px; background-color: #F2D5DC;"></div>
 
     <p id="vest-desc"
       class="font-raleway mb-7"
-      style="font-size: clamp(0.95rem, 4.5vw, 1.1rem); font-weight: 300; color: #888; letter-spacing: 0.02em;"
+      style="font-size: clamp(0.95rem, 4.5vw, 1.1rem); font-weight: 300; color: #C27587; letter-spacing: 0.02em;"
     >Una orientación para tu vestimenta</p>
 
     <button id="btn-ver-mas"
       class="w-full flex items-center justify-center rounded-full py-3 px-6 font-raleway transition-all hover:opacity-85 active:scale-95"
-      style="background: linear-gradient(135deg, #c9a97a, #b8956a); color: #fff; font-size: clamp(0.9rem, 4vw, 1.05rem); font-weight: 400; letter-spacing: 0.06em; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(184,149,106,0.4);"
+      style="background-color: #C27587; color: #fff; font-size: clamp(0.9rem, 4vw, 1.05rem); font-weight: 400; letter-spacing: 0.06em; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(194,117,135,0.4);"
     >
       Ver más
     </button>
@@ -38,45 +38,39 @@
   class="fixed inset-0 flex items-center justify-center z-[99999] px-5"
   style="display: none !important; background-color: rgba(0,0,0,0.65); backdrop-filter: blur(4px);"
 >
-  <!-- Wrapper: posiciona flor2 detrás del card -->
   <div class="relative w-full max-w-xs mx-auto" style="max-height: 90vh;">
 
-    <!-- flor2.png detrás del card, en la parte superior -->
-    <img
-      src="/imagenes/flor2.png"
-      alt=""
-      aria-hidden="true"
+    <!-- Flores arriba detrás del card -->
+    <img src="/imagenes/flores.png" alt="" aria-hidden="true"
       class="absolute left-0 right-0 w-full pointer-events-none select-none"
-      style="top: 0; z-index: 0;"
+      style="top: 0; transform: scaleY(-1); z-index: 0;"
     />
 
-    <!-- Círculo corbata: FUERA del card, posicionado absolutamente -->
-    <div
-      class="absolute left-1/2 flex items-center justify-center rounded-full"
+    <!-- Círculo con corbata -->
+    <div class="absolute left-1/2 flex items-center justify-center rounded-full"
       style="width: 5rem; height: 5rem;
-             background-color: #fff; border: 2px solid #b8956a;
-             box-shadow: 0 4px 16px rgba(184,149,106,0.25);
+             background-color: #fff; border: 2px solid #C9A545;
+             box-shadow: 0 4px 16px rgba(201,165,69,0.25);
              transform: translateX(-50%);
-             top: 42px; z-index: 5;"
-    >
+             top: 42px; z-index: 5;">
       <img src="/imagenes/corbata.png" alt="Corbata"
         class="corbata-icon w-10 h-10 object-contain" />
     </div>
 
-    <!-- Card blanco (sobre la flor) -->
+    <!-- Card blanco -->
     <div
       class="relative flex flex-col items-center text-center rounded-2xl"
-      style="background-color: #fff; z-index: 1; margin-top: 70px;
+      style="background-color: #fffaf7; z-index: 1; margin-top: 70px;
              max-height: calc(90vh - 70px); overflow-y: auto;
-             border: 2px solid #b8956a; padding-bottom: 1.5rem; padding-top: 3rem;"
+             border: 1.5px solid #C9A545; padding: 4.5rem 1.5rem 1.5rem;"
     >
 
       <!-- Botón cerrar -->
       <button
         id="btn-cerrar-modal"
         class="absolute flex items-center justify-center rounded-full"
-        style="top: 0.6rem; right: 0.6rem; width: 1.9rem; height: 1.9rem;
-               background-color: #b8956a; border: none; cursor: pointer; z-index: 20;"
+        style="top: 0.7rem; right: 0.7rem; width: 1.9rem; height: 1.9rem;
+               background-color: #C27587; border: none; cursor: pointer; z-index: 20;"
         aria-label="Cerrar"
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"
@@ -86,27 +80,41 @@
       </button>
 
       <!-- Título -->
-      <h3
-        class="font-crimson uppercase tracking-[0.2em] mb-1"
-        style="font-size: clamp(1.2rem, 5.5vw, 1.5rem); font-weight: 700; color: #b8956a;"
-      >
-        Dress Code
+      <h3 class="font-crimson uppercase tracking-[0.18em] mb-3"
+        style="font-size: clamp(1.1rem, 5vw, 1.35rem); font-weight: 700; color: #C9A545;">
+        Código de Vestimenta
       </h3>
 
-      <!-- Subtítulo -->
-      <p
-        class="font-raleway mb-4"
-        style="font-size: clamp(0.85rem, 3.5vw, 0.95rem); color: #aaa; font-weight: 300; letter-spacing: 0.05em;"
-      >
-        Vestimenta Formal
-      </p>
+      <!-- Separador con rombo -->
+      <div class="flex items-center gap-2 mb-4 w-full justify-center">
+        <div style="height: 1px; width: 3rem; background-color: #C9A545; opacity: 0.5;"></div>
+        <span style="color: #C9A545; font-size: 0.5rem;">◆</span>
+        <div style="height: 1px; width: 3rem; background-color: #C9A545; opacity: 0.5;"></div>
+      </div>
 
       <!-- Imagen vestimenta -->
-      <img
-        src="/imagenes/vestimenta.png"
-        alt="Vestimenta formal"
-        class="w-full px-4"
-        style="object-fit: contain; border-radius: 12px;"
+      <img src="/imagenes/vestimenta.webp" alt="Código de vestimenta"
+        class="mb-3"
+        style="object-fit: contain; width: 35%; max-height: 70px;"
+        loading="lazy"
+      />
+
+      <!-- "Formal" -->
+      <p class="font-great-vibes mb-2"
+        style="font-size: clamp(2rem, 9vw, 2.6rem); color: #C9A545;">
+        Formal
+      </p>
+
+      <!-- Descripción -->
+      <p class="font-raleway mb-5"
+        style="font-size: clamp(0.85rem, 3.5vw, 0.95rem); color: #C27587; font-weight: 300; letter-spacing: 0.03em;">
+        El color blanco y los tonos en rosa están reservados para los novios
+      </p>
+
+      <!-- Flores abajo -->
+      <img src="/imagenes/flor2.png" alt="" aria-hidden="true"
+        class="pointer-events-none select-none"
+        style="width: 40%; margin-bottom: -8px;"
         loading="lazy"
       />
 

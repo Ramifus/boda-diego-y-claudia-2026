@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"from PIL import Image; img = Image.open\\('codigovestimenta.jfif'\\); img.thumbnail\\(\\(400,600\\)\\); img.save\\('codigovestimenta_small.png'\\)\")",
+      "Bash(python3 *)"
+    ]
+  }
+}

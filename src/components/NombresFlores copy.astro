@@ -7,20 +7,8 @@ const MES_ANO = "Agosto 2026";
 <section
   class="relative w-full min-h-screen flex flex-col overflow-hidden"
 >
-  <!-- Fondo: foto de la pareja -->
-  <div class="absolute inset-0 z-[1]">
-    <img
-      src="/imagenes/imagen1.png"
-      alt={`${NOMBRE_1} y ${NOMBRE_2}`}
-      class="w-full h-full object-cover object-center"
-      loading="eager"
-      fetchpriority="high"
-    />
-    <div class="absolute inset-0 bg-black/45 z-[2]"></div>
-  </div>
-
   <!-- Barra superior tipo periódico -->
-  <div
+  <div id="nf-barra"
     class="relative z-[10] mx-5 mt-5 py-2 px-1 flex items-center justify-between"
     style="border-top: 1px solid rgba(255,255,255,0.7); border-bottom: 1px solid rgba(255,255,255,0.7);"
   >
@@ -43,25 +31,25 @@ const MES_ANO = "Agosto 2026";
     class="relative z-[10] flex-1 flex flex-col items-center justify-center text-center px-6 pb-16 pt-8"
   >
     <!-- Línea superior del bloque de nombres -->
-    <div class="border-t border-white/70 mb-4" style="width: 9rem;"></div>
+    <div id="nf-linea-top" class="border-t border-white/70 mb-4" style="width: 9rem;"></div>
 
     <!-- Bloque de nombres con & centrado -->
     <div class="flex flex-col items-center">
-      <h1
+      <h1 id="nf-nombre1"
         class="font-crimson text-white"
         style="font-size: clamp(4.5rem, 22vw, 7rem); font-weight: 700; line-height: 1; text-shadow: 0 2px 24px rgba(0,0,0,0.4);"
       >
         {NOMBRE_1}
       </h1>
 
-      <span
+      <span id="nf-amp"
         class="font-great-vibes text-white"
         style="font-size: clamp(2.5rem, 12vw, 4rem); line-height: 1; margin-top: 1rem; margin-bottom: 0.1rem;"
       >
         &amp;
       </span>
 
-      <h1
+      <h1 id="nf-nombre2"
         class="font-crimson text-white"
         style="font-size: clamp(4.5rem, 22vw, 7rem); font-weight: 700; line-height: 1; text-shadow: 0 2px 24px rgba(0,0,0,0.4);"
       >
@@ -70,10 +58,10 @@ const MES_ANO = "Agosto 2026";
     </div>
 
     <!-- Línea inferior del bloque de nombres -->
-    <div class="border-t border-white/70 mt-4 mb-5" style="width: 9rem;"></div>
+    <div id="nf-linea-bot" class="border-t border-white/70 mt-4 mb-5" style="width: 9rem;"></div>
 
     <!-- Subtítulo -->
-    <p
+    <p id="nf-subtitulo"
       class="font-crimson text-white"
       style="font-size: clamp(1.9rem, 9vw, 2.6rem); font-weight: 600;"
     >
@@ -81,7 +69,7 @@ const MES_ANO = "Agosto 2026";
     </p>
 
     <!-- Frase romántica -->
-    <p
+    <p id="nf-frase"
       class="font-raleway text-white/85 mt-3 max-w-xs"
       style="font-size: clamp(1.2rem, 5.5vw, 1.5rem); font-weight: 200; letter-spacing: 0.04em;"
     >
@@ -120,7 +108,7 @@ const MES_ANO = "Agosto 2026";
     >
       <svg
         id="icono-pause-global"
-        class="w-6 h-6 text-[#0F3D2E] relative z-10"
+        class="w-6 h-6 text-[#C27587] relative z-10"
         fill="currentColor"
         viewBox="0 0 20 20"
       >
@@ -130,7 +118,7 @@ const MES_ANO = "Agosto 2026";
       </svg>
       <svg
         id="icono-play-global"
-        class="w-6 h-6 text-[#0F3D2E] hidden relative z-10"
+        class="w-6 h-6 text-[#C27587] hidden relative z-10"
         fill="currentColor"
         viewBox="0 0 20 20"
       >
@@ -162,6 +150,26 @@ const MES_ANO = "Agosto 2026";
 </style>
 
 <script>
+  import { gsap } from "gsap";
+
+  // Animación de entrada al cargar (es el primer componente visible)
+  gsap.set(["#nf-barra","#nf-linea-top","#nf-linea-bot"], { opacity: 0, scaleX: 0 });
+  gsap.set("#nf-nombre1", { opacity: 0, x: -60 });
+  gsap.set("#nf-nombre2", { opacity: 0, x: 60 });
+  gsap.set("#nf-amp",     { opacity: 0, scale: 0, rotation: -180 });
+  gsap.set(["#nf-subtitulo","#nf-frase"], { opacity: 0, y: 30 });
+  gsap.set("#flecha-scroll", { opacity: 0 });
+
+  const tl = gsap.timeline({ delay: 0.3 });
+  tl.to("#nf-barra",     { opacity: 1, scaleX: 1, duration: 0.8, ease: "power2.out" }, 0)
+    .to("#nf-nombre1",   { opacity: 1, x: 0, duration: 1, ease: "power3.out" }, 0.2)
+    .to("#nf-nombre2",   { opacity: 1, x: 0, duration: 1, ease: "power3.out" }, 0.35)
+    .to("#nf-amp",       { opacity: 1, scale: 1, rotation: 0, duration: 0.8, ease: "back.out(1.7)" }, 0.5)
+    .to(["#nf-linea-top","#nf-linea-bot"], { opacity: 1, scaleX: 1, duration: 0.7, ease: "power2.out", stagger: 0.1 }, 0.6)
+    .to("#nf-subtitulo", { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, 0.85)
+    .to("#nf-frase",     { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, 1)
+    .to("#flecha-scroll",{ opacity: 1, duration: 0.6, ease: "power2.out" }, 1.2);
+
   document.addEventListener("DOMContentLoaded", () => {
     const botonToggle = document.getElementById("toggle-musica-global");
     const iconoPlay = document.getElementById("icono-play-global");
