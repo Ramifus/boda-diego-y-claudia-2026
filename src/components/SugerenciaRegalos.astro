@@ -55,13 +55,21 @@
     </p>
 
     <!-- Botón -->
-    <button
-      id="btn-regalo-abrir"
-      class="w-full flex items-center justify-center rounded-full py-3 px-6 font-raleway transition-all hover:opacity-85 active:scale-95"
-      style="background-color: #C27587; color: #fff; font-size: clamp(0.9rem, 4vw, 1.05rem); font-weight: 400; letter-spacing: 0.06em; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(194,117,135,0.4);"
-    >
-      Ver opciones
-    </button>
+    <div id="regalo-btn-wrap" class="relative w-full flex items-center justify-center" style="padding: 0 24px;">
+      <img src="/imagenes/flor2.png" alt="" aria-hidden="true" class="pointer-events-none select-none absolute" style="width:60px; height:60px; object-fit:contain; left:0; z-index:10; transform: rotate(90deg);" />
+      <button
+        id="btn-regalo-abrir"
+        class="w-full flex items-center justify-center rounded-full py-3 px-6 font-raleway transition-all hover:opacity-85 active:scale-95"
+        style="background-color: #C27587; color: #fff; font-size: clamp(0.9rem, 4vw, 1.05rem); font-weight: 400; letter-spacing: 0.06em; border: none; cursor: pointer;"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:24px; height:24px; flex-shrink:0; margin-right:18px;">
+          <path d="M20 12v10H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/>
+          <path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/>
+        </svg>
+        Ver opciones
+      </button>
+      <img src="/imagenes/flor2.png" alt="" aria-hidden="true" class="pointer-events-none select-none absolute" style="width:60px; height:60px; object-fit:contain; right:0; z-index:10; transform: rotate(-90deg);" />
+    </div>
   </div>
 </section>
 
@@ -112,7 +120,7 @@
       class="relative flex flex-col items-center text-center rounded-2xl"
       style="background-color: #fffaf7; z-index: 1; margin-top: 70px;
              max-height: calc(90vh - 70px); overflow-y: auto;
-             border: 1.5px solid #C9A545; padding: 4.5rem 1.5rem 1.5rem;"
+             border: 1.5px solid #C9A545; padding: 4.5rem 1.5rem 0;"
     >
       <!-- Botón cerrar -->
       <button
@@ -216,6 +224,13 @@
         style="font-size: clamp(0.85rem, 3.5vw, 0.95rem); font-weight: 300; color: #C27587; line-height: 1.7; font-style: italic;">
         Si prefieres hacer un regalo en efectivo, habrá un buzón especial en la recepción
       </p> -->
+
+      <!-- Flores abajo -->
+      <img src="/imagenes/flor2.png" alt="" aria-hidden="true"
+        class="pointer-events-none select-none"
+        style="width: 40%; display: block; margin: 8px auto 0;"
+        loading="lazy"
+      />
     </div>
   </div>
 </div>
@@ -230,7 +245,7 @@
   gsap.set("#regalo-icono", { opacity: 0, y: -20, scale: 0.7 });
   gsap.set("#regalo-sep", { opacity: 0, scaleX: 0 });
   gsap.set("#regalo-desc", { opacity: 0, y: 20 });
-  gsap.set("#btn-regalo-abrir", { opacity: 0, y: 20 });
+  gsap.set("#regalo-btn-wrap", { opacity: 0, y: 20 });
 
   let lastY = window.scrollY,
     bajando = true;
@@ -249,7 +264,7 @@
     gsap.set("#regalo-icono", { opacity: 0, y: -20, scale: 0.7 });
     gsap.set("#regalo-sep", { opacity: 0, scaleX: 0 });
     gsap.set("#regalo-desc", { opacity: 0, y: 20 });
-    gsap.set("#btn-regalo-abrir", { opacity: 0, y: 20 });
+    gsap.set("#regalo-btn-wrap", { opacity: 0, y: 20 });
   }
 
   new IntersectionObserver(
@@ -299,7 +314,7 @@
             0.45,
           )
           .to(
-            "#btn-regalo-abrir",
+            "#regalo-btn-wrap",
             { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
             0.6,
           );

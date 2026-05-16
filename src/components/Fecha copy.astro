@@ -1,11 +1,11 @@
 ---
 // Datos de la ceremonia
 const DIA_NOMBRE = "SÁBADO";
-// const MES = "AGOSTO";
+const MES = "AGOSTO";
 const DIA_NUM = "22";
-const HORA = "AGOSTO";
+const HORA = "1:30 PM";
 const ANO = "2026";
-const LUGAR = "Lion Palace Convention Center";
+const LUGAR = "Lion Palace Convention Center.";
 const DIRECCION = "Calle Linares N° 1017";
 const MAPS_URL = "https://maps.app.goo.gl/qiYPpveC8x6ap4UW8";
 ---
@@ -37,13 +37,13 @@ const MAPS_URL = "https://maps.app.goo.gl/qiYPpveC8x6ap4UW8";
       style="height: 1px; background-color: #F2D5DC;"
     >
     </div>
-    <!-- <p
+    <p
       id="fecha-mes"
       class="font-raleway uppercase tracking-[0.3em] mb-3"
       style="font-size: clamp(0.95rem, 4vw, 1.1rem); color: #C27587; font-weight: 300;"
     >
       {MES}
-    </p> -->
+    </p>
     <div
       id="fecha-fila"
       class="flex items-center justify-center gap-4 w-full mb-1"
@@ -98,21 +98,16 @@ const MAPS_URL = "https://maps.app.goo.gl/qiYPpveC8x6ap4UW8";
     >
       13:30 hs
     </p>
-    <div id="fecha-btn-wrap" class="relative w-full flex items-center justify-center" style="padding: 0 24px;">
-      <img src="/imagenes/flor2.png" alt="" aria-hidden="true" class="pointer-events-none select-none absolute" style="width:60px; height:60px; object-fit:contain; left:0; z-index:10; transform: rotate(90deg);" />
-      <a
-        id="fecha-btn"
-        href={MAPS_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="w-full flex items-center justify-center rounded-full py-3 px-6 font-raleway transition-opacity hover:opacity-80 active:opacity-70"
-        style="background-color: #C27587; color: #fff; font-size: clamp(0.85rem, 4vw, 1rem); font-weight: 400; letter-spacing: 0.05em; text-decoration: none;"
-      >
-        <img src="/imagenes/ubicacion.png" alt="" aria-hidden="true" class="pointer-events-none select-none" style="width:24px; height:24px; object-fit:contain; margin-right:18px; filter: brightness(0) invert(1);" />
-        ¿Cómo llegar?
-      </a>
-      <img src="/imagenes/flor2.png" alt="" aria-hidden="true" class="pointer-events-none select-none absolute" style="width:60px; height:60px; object-fit:contain; right:0; z-index:10; transform: rotate(-90deg);" />
-    </div>
+    <a
+      id="fecha-btn"
+      href={MAPS_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="w-full flex items-center justify-center rounded-full py-3 px-6 font-raleway transition-opacity hover:opacity-80 active:opacity-70"
+      style="background-color: #C27587; color: #fff; font-size: clamp(0.85rem, 4vw, 1rem); font-weight: 400; letter-spacing: 0.05em; text-decoration: none;"
+    >
+      ¿Cómo llegar?
+    </a>
   </div>
 </section>
 
@@ -130,7 +125,7 @@ const MAPS_URL = "https://maps.app.goo.gl/qiYPpveC8x6ap4UW8";
     opacity: 0,
     y: 25,
   });
-  gsap.set("#fecha-btn-wrap", { opacity: 0, y: 20 });
+  gsap.set("#fecha-btn", { opacity: 0, y: 20 });
 
   let lastY = window.scrollY,
     bajando = true;
@@ -154,7 +149,7 @@ const MAPS_URL = "https://maps.app.goo.gl/qiYPpveC8x6ap4UW8";
       opacity: 0,
       y: 25,
     });
-    gsap.set("#fecha-btn-wrap", { opacity: 0, y: 20 });
+    gsap.set("#fecha-btn", { opacity: 0, y: 20 });
   }
 
   new IntersectionObserver(
@@ -226,7 +221,7 @@ const MAPS_URL = "https://maps.app.goo.gl/qiYPpveC8x6ap4UW8";
             0.65,
           )
           .to(
-            "#fecha-btn-wrap",
+            "#fecha-btn",
             { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
             0.85,
           );

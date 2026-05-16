@@ -6,11 +6,13 @@ const MAPS_URL = "https://maps.app.goo.gl/fhUuFZzXsbpZfCoe8";
 
 <section class="relative w-full flex items-center justify-center py-16 px-5">
   <!-- Tarjeta blanca -->
-  <div id="rec-card"
+  <div
+    id="rec-card"
     class="relative w-full max-w-xs mx-auto flex flex-col items-center text-center rounded-2xl shadow-2xl px-8 py-10"
     style="background-color: rgba(255,255,255,0.96);"
   >
-    <div id="rec-icon"
+    <div
+      id="rec-icon"
       class="mb-4 flex items-center justify-center rounded-full"
       style="width: 5rem; height: 5rem; background-color: #FDF0F3;"
     >
@@ -33,102 +35,208 @@ const MAPS_URL = "https://maps.app.goo.gl/fhUuFZzXsbpZfCoe8";
       </svg>
     </div>
 
-    <h2 id="rec-titulo"
+    <h2
+      id="rec-titulo"
       class="font-crimson uppercase tracking-[0.2em] mb-4"
       style="font-size: clamp(1.3rem, 6vw, 1.7rem); font-weight: 700; color: #C9A545;"
-    >Bus de Cortesía</h2>
+    >
+      Transporte de Cortesía
+    </h2>
 
-    <div id="rec-sep1" class="w-full mb-5" style="height: 1px; background-color: #F2D5DC;"></div>
+    <div
+      id="rec-sep1"
+      class="w-full mb-5"
+      style="height: 1px; background-color: #F2D5DC;"
+    >
+    </div>
 
-    <p id="rec-texto"
+    <p
+      id="rec-texto"
       class="font-raleway mb-5"
       style="font-size: clamp(0.95rem, 4vw, 1.1rem); font-weight: 300; color: #666; line-height: 1.7;"
     >
-      Habrá un bus disponible para trasladar a los invitados hasta el salón de
-      eventos.
+      Habrá un transporte disponible para trasladar a los invitados hasta el
+      salón de eventos.
       <br />
       <strong style="color: #C27587; font-weight: 400;"
         >¡Te pedimos puntualidad!</strong
       >
     </p>
 
-    <p id="rec-hora"
+    <p
+      id="rec-hora"
       class="font-crimson font-bold mb-1"
       style="font-size: clamp(2.2rem, 10vw, 3rem); color: #C9A545; line-height: 1; letter-spacing: 0.05em;"
-    >{HORA_BUS}</p>
-
-    <div id="rec-sep2" class="w-full mt-5 mb-5" style="height: 1px; background-color: #F2D5DC;"></div>
-
-    <p id="rec-label" class="font-raleway uppercase tracking-[0.15em] mb-2" style="font-size: clamp(0.7rem, 3vw, 0.8rem); color: #C27587; font-weight: 300;">Punto de encuentro</p>
-
-    <p id="rec-plaza" class="font-crimson mb-6" style="font-size: clamp(1.15rem, 5vw, 1.4rem); font-weight: 700; color: #C9A545;">{PLAZA}</p>
-
-    <a id="rec-btn"
-      href={MAPS_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="w-full flex items-center justify-center gap-2 rounded-full py-3 px-6 font-raleway transition-opacity hover:opacity-80 active:opacity-70"
-      style="background-color: #C27587; color: #fff; font-size: clamp(0.85rem, 4vw, 1rem); font-weight: 400; letter-spacing: 0.05em; text-decoration: none;"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="w-4 h-4"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+      {HORA_BUS}
+    </p>
+
+    <div
+      id="rec-sep2"
+      class="w-full mt-5 mb-5"
+      style="height: 1px; background-color: #F2D5DC;"
+    >
+    </div>
+
+    <p
+      id="rec-label"
+      class="font-raleway uppercase tracking-[0.15em] mb-2"
+      style="font-size: clamp(0.7rem, 3vw, 0.8rem); color: #C27587; font-weight: 300;"
+    >
+      Punto de encuentro
+    </p>
+
+    <p
+      id="rec-plaza"
+      class="font-crimson mb-6"
+      style="font-size: clamp(1.15rem, 5vw, 1.4rem); font-weight: 700; color: #C9A545;"
+    >
+      {PLAZA}
+    </p>
+
+    <div
+      id="rec-btn-wrap"
+      class="relative w-full flex items-center justify-center"
+      style="padding: 0 24px;"
+    >
+      <img
+        src="/imagenes/flor2.png"
+        alt=""
+        aria-hidden="true"
+        class="pointer-events-none select-none absolute"
+        style="width:60px; height:60px; object-fit:contain; left:0; z-index:10; transform: rotate(90deg);"
+      />
+      <a
+        id="rec-btn"
+        href={MAPS_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full flex items-center justify-center rounded-full py-3 px-6 font-raleway transition-opacity hover:opacity-80 active:opacity-70"
+        style="background-color: #C27587; color: #fff; font-size: clamp(0.85rem, 4vw, 1rem); font-weight: 400; letter-spacing: 0.05em; text-decoration: none;"
       >
-        <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1118 0z"></path>
-        <circle cx="12" cy="10" r="3"></circle>
-      </svg>
-      Ver ubicación
-    </a>
+        <img
+          src="/imagenes/ubicacion.png"
+          alt=""
+          aria-hidden="true"
+          class="pointer-events-none select-none"
+          style="width:24px; height:24px; object-fit:contain; margin-right:18px; filter: brightness(0) invert(1);"
+        />
+        Ver ubicación
+      </a>
+      <img
+        src="/imagenes/flor2.png"
+        alt=""
+        aria-hidden="true"
+        class="pointer-events-none select-none absolute"
+        style="width:60px; height:60px; object-fit:contain; right:0; z-index:10; transform: rotate(-90deg);"
+      />
+    </div>
   </div>
 </section>
 
 <script>
   import { gsap } from "gsap";
   const card = document.getElementById("rec-card");
-  gsap.set("#rec-icon",   { opacity: 0, scale: 0.5, y: -20 });
+  gsap.set("#rec-icon", { opacity: 0, scale: 0.5, y: -20 });
   gsap.set("#rec-titulo", { opacity: 0, scale: 0.85 });
-  gsap.set(["#rec-sep1","#rec-sep2"], { opacity: 0, scaleX: 0 });
-  gsap.set("#rec-texto",  { opacity: 0, y: 25 });
-  gsap.set("#rec-hora",   { opacity: 0, scale: 0.6 });
-  gsap.set(["#rec-label","#rec-plaza"], { opacity: 0, y: 20 });
-  gsap.set("#rec-btn",    { opacity: 0, y: 20 });
+  gsap.set(["#rec-sep1", "#rec-sep2"], { opacity: 0, scaleX: 0 });
+  gsap.set("#rec-texto", { opacity: 0, y: 25 });
+  gsap.set("#rec-hora", { opacity: 0, scale: 0.6 });
+  gsap.set(["#rec-label", "#rec-plaza"], { opacity: 0, y: 20 });
+  gsap.set("#rec-btn-wrap", { opacity: 0, y: 20 });
 
-  let lastY = window.scrollY, bajando = true;
-  window.addEventListener("scroll", () => { bajando = window.scrollY >= lastY; lastY = window.scrollY; }, { passive: true });
+  let lastY = window.scrollY,
+    bajando = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      bajando = window.scrollY >= lastY;
+      lastY = window.scrollY;
+    },
+    { passive: true },
+  );
 
   function resetRec() {
-    gsap.set("#rec-card",   { opacity: 0, y: 50 });
-    gsap.set("#rec-icon",   { opacity: 0, scale: 0.5, y: -20 });
+    gsap.set("#rec-card", { opacity: 0, y: 50 });
+    gsap.set("#rec-icon", { opacity: 0, scale: 0.5, y: -20 });
     gsap.set("#rec-titulo", { opacity: 0, scale: 0.85 });
-    gsap.set(["#rec-sep1","#rec-sep2"], { opacity: 0, scaleX: 0 });
-    gsap.set("#rec-texto",  { opacity: 0, y: 25 });
-    gsap.set("#rec-hora",   { opacity: 0, scale: 0.6 });
-    gsap.set(["#rec-label","#rec-plaza"], { opacity: 0, y: 20 });
-    gsap.set("#rec-btn",    { opacity: 0, y: 20 });
+    gsap.set(["#rec-sep1", "#rec-sep2"], { opacity: 0, scaleX: 0 });
+    gsap.set("#rec-texto", { opacity: 0, y: 25 });
+    gsap.set("#rec-hora", { opacity: 0, scale: 0.6 });
+    gsap.set(["#rec-label", "#rec-plaza"], { opacity: 0, y: 20 });
+    gsap.set("#rec-btn-wrap", { opacity: 0, y: 20 });
   }
 
-  new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) {
-        if (e.boundingClientRect.top > 0) resetRec();
-        return;
-      }
-      if (!bajando) return;
-      const tl = gsap.timeline();
-      tl.to("#rec-card",   { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0)
-        .to("#rec-icon",   { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "back.out(1.6)" }, 0)
-        .to("#rec-titulo", { opacity: 1, scale: 1, duration: 0.7, ease: "back.out(1.4)" }, 0.15)
-        .to(["#rec-sep1","#rec-sep2"], { opacity: 1, scaleX: 1, duration: 0.6, ease: "power2.out", stagger: 0.2, transformOrigin: "left" }, 0.25)
-        .to("#rec-texto",  { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 0.35)
-        .to("#rec-hora",   { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.5)" }, 0.5)
-        .to(["#rec-label","#rec-plaza"], { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", stagger: 0.1 }, 0.65)
-        .to("#rec-btn",    { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.85);
-    });
-  }, { threshold: 0.15 }).observe(card!);
+  new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) {
+          if (e.boundingClientRect.top > 0) resetRec();
+          return;
+        }
+        if (!bajando) return;
+        const tl = gsap.timeline();
+        tl.to(
+          "#rec-card",
+          { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+          0,
+        )
+          .to(
+            "#rec-icon",
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "back.out(1.6)",
+            },
+            0,
+          )
+          .to(
+            "#rec-titulo",
+            { opacity: 1, scale: 1, duration: 0.7, ease: "back.out(1.4)" },
+            0.15,
+          )
+          .to(
+            ["#rec-sep1", "#rec-sep2"],
+            {
+              opacity: 1,
+              scaleX: 1,
+              duration: 0.6,
+              ease: "power2.out",
+              stagger: 0.2,
+              transformOrigin: "left",
+            },
+            0.25,
+          )
+          .to(
+            "#rec-texto",
+            { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" },
+            0.35,
+          )
+          .to(
+            "#rec-hora",
+            { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.5)" },
+            0.5,
+          )
+          .to(
+            ["#rec-label", "#rec-plaza"],
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "power2.out",
+              stagger: 0.1,
+            },
+            0.65,
+          )
+          .to(
+            "#rec-btn-wrap",
+            { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
+            0.85,
+          );
+      });
+    },
+    { threshold: 0.15 },
+  ).observe(card!);
 </script>

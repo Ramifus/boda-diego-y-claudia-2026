@@ -22,12 +22,17 @@
       style="font-size: clamp(0.95rem, 4.5vw, 1.1rem); font-weight: 300; color: #C27587; letter-spacing: 0.02em;"
     >Una orientación para tu vestimenta</p>
 
-    <button id="btn-ver-mas"
-      class="w-full flex items-center justify-center rounded-full py-3 px-6 font-raleway transition-all hover:opacity-85 active:scale-95"
-      style="background-color: #C27587; color: #fff; font-size: clamp(0.9rem, 4vw, 1.05rem); font-weight: 400; letter-spacing: 0.06em; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(194,117,135,0.4);"
-    >
-      Ver más
-    </button>
+    <div id="vest-btn-wrap" class="relative w-full flex items-center justify-center" style="padding: 0 24px;">
+      <img src="/imagenes/flor2.png" alt="" aria-hidden="true" class="pointer-events-none select-none absolute" style="width:60px; height:60px; object-fit:contain; left:0; z-index:10; transform: rotate(90deg);" />
+      <button id="btn-ver-mas"
+        class="w-full flex items-center justify-center rounded-full py-3 px-6 font-raleway transition-all hover:opacity-85 active:scale-95"
+        style="background-color: #C27587; color: #fff; font-size: clamp(0.9rem, 4vw, 1.05rem); font-weight: 400; letter-spacing: 0.06em; border: none; cursor: pointer;"
+      >
+        <img src="/imagenes/corbata.png" alt="" aria-hidden="true" class="pointer-events-none select-none corbata-icon" style="width:24px; height:24px; object-fit:contain; margin-right:18px; filter: brightness(0) invert(1);" />
+        Ver más
+      </button>
+      <img src="/imagenes/flor2.png" alt="" aria-hidden="true" class="pointer-events-none select-none absolute" style="width:60px; height:60px; object-fit:contain; right:0; z-index:10; transform: rotate(-90deg);" />
+    </div>
 
   </div>
 </section>
@@ -130,7 +135,7 @@
   gsap.set("#vest-corbata", { opacity: 0, y: -25, rotation: -15 });
   gsap.set("#vest-sep",     { opacity: 0, scaleX: 0 });
   gsap.set("#vest-desc",    { opacity: 0, y: 20 });
-  gsap.set("#btn-ver-mas",  { opacity: 0, y: 20 });
+  gsap.set("#vest-btn-wrap", { opacity: 0, y: 20 });
 
   let lastY = window.scrollY, bajando = true;
   window.addEventListener("scroll", () => { bajando = window.scrollY >= lastY; lastY = window.scrollY; }, { passive: true });
@@ -141,7 +146,7 @@
     gsap.set("#vest-corbata", { opacity: 0, y: -25, rotation: -15 });
     gsap.set("#vest-sep",     { opacity: 0, scaleX: 0 });
     gsap.set("#vest-desc",    { opacity: 0, y: 20 });
-    gsap.set("#btn-ver-mas",  { opacity: 0, y: 20 });
+    gsap.set("#vest-btn-wrap", { opacity: 0, y: 20 });
   }
 
   new IntersectionObserver((entries) => {
@@ -157,7 +162,7 @@
         .to("#vest-corbata", { opacity: 1, y: 0, rotation: 0, duration: 0.8, ease: "back.out(1.5)" }, 0.15)
         .to("#vest-sep",     { opacity: 1, scaleX: 1, duration: 0.6, ease: "power2.out", transformOrigin: "left" }, 0.3)
         .to("#vest-desc",    { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.45)
-        .to("#btn-ver-mas",  { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.6);
+        .to("#vest-btn-wrap", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.6);
     });
   }, { threshold: 0.2 }).observe(card!);
 </script>
