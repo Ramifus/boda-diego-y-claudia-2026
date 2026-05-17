@@ -55,20 +55,46 @@
     </p>
 
     <!-- Botón -->
-    <div id="regalo-btn-wrap" class="relative w-full flex items-center justify-center" style="padding: 0 24px;">
-      <img src="/imagenes/flor2.png" alt="" aria-hidden="true" class="pointer-events-none select-none absolute" style="width:60px; height:60px; object-fit:contain; left:0; z-index:10; transform: rotate(90deg);" />
+    <div
+      id="regalo-btn-wrap"
+      class="relative w-full flex items-center justify-center"
+      style="padding: 0 24px;"
+    >
+      <img
+        src="/imagenes/flor2.png"
+        alt=""
+        aria-hidden="true"
+        class="pointer-events-none select-none absolute"
+        style="width:60px; height:60px; object-fit:contain; left:0; z-index:10; transform: rotate(90deg);"
+      />
       <button
         id="btn-regalo-abrir"
         class="w-full flex items-center justify-center rounded-full py-3 px-6 font-raleway transition-all hover:opacity-85 active:scale-95"
         style="background-color: #C27587; color: #fff; font-size: clamp(0.9rem, 4vw, 1.05rem); font-weight: 400; letter-spacing: 0.06em; border: none; cursor: pointer;"
       >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:24px; height:24px; flex-shrink:0; margin-right:18px;">
-          <path d="M20 12v10H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/>
-          <path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          style="width:24px; height:24px; flex-shrink:0; margin-right:18px;"
+        >
+          <path d="M20 12v10H4V12"></path><path d="M22 7H2v5h20V7z"></path><path
+            d="M12 22V7"></path>
+          <path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"></path><path
+            d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"></path>
         </svg>
         Ver opciones
       </button>
-      <img src="/imagenes/flor2.png" alt="" aria-hidden="true" class="pointer-events-none select-none absolute" style="width:60px; height:60px; object-fit:contain; right:0; z-index:10; transform: rotate(-90deg);" />
+      <img
+        src="/imagenes/flor2.png"
+        alt=""
+        aria-hidden="true"
+        class="pointer-events-none select-none absolute"
+        style="width:60px; height:60px; object-fit:contain; right:0; z-index:10; transform: rotate(-90deg);"
+      />
     </div>
   </div>
 </section>
@@ -117,10 +143,11 @@
 
     <!-- Card blanco -->
     <div
+      id="modal-regalo-scroll"
       class="relative flex flex-col items-center text-center rounded-2xl"
       style="background-color: #fffaf7; z-index: 1; margin-top: 70px;
              max-height: calc(90vh - 70px); overflow-y: auto;
-             border: 1.5px solid #C9A545; padding: 4.5rem 1.5rem 0;"
+             border: 1.5px solid #C9A545; padding: 4.5rem 1.5rem 2rem;"
     >
       <!-- Botón cerrar -->
       <button
@@ -225,15 +252,141 @@
         Si prefieres hacer un regalo en efectivo, habrá un buzón especial en la recepción
       </p> -->
 
+      <!-- Card Obsequios -->
+      <div
+        class="w-full rounded-2xl px-5 py-5 mb-5"
+        style="background-color: #fff; border: 1px solid #F2D5DC;"
+      >
+        <p
+          class="font-crimson uppercase tracking-[0.2em] mb-4"
+          style="font-size: clamp(1.1rem, 5vw, 1.4rem); font-weight: 700; color: #C9A545;"
+        >
+          Obsequios
+        </p>
+        <p
+          class="font-raleway mb-3"
+          style="font-size: clamp(0.85rem, 3.5vw, 0.95rem); font-weight: 300; color: #C27587; line-height: 1.7;"
+        >
+          Si deseas entregarnos un regalo, puedes hacerlo en el Edificio
+          Alianza, piso 4, Dpto. 404 – familia Fuentes.
+        </p>
+        <p
+          class="font-raleway mb-5"
+          style="font-size: clamp(0.85rem, 3.5vw, 0.95rem); font-weight: 400; color: #C9A545; line-height: 1.6;"
+        >
+          Dirección: Calle Menéndez y Pelayo N.º 1053, zona Sopachi.
+        </p>
+        <div
+          class="relative w-full flex items-center justify-center"
+          style="padding: 0 24px;"
+        >
+          <img
+            src="/imagenes/flor2.png"
+            alt=""
+            aria-hidden="true"
+            class="pointer-events-none select-none absolute"
+            style="width:60px; height:60px; object-fit:contain; left:0; z-index:10; transform: rotate(90deg);"
+          />
+          <a
+            href="https://maps.app.goo.gl/ZLS7bNXyNifJVPCXA"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full flex items-center justify-center rounded-full py-2.5 px-4 font-raleway transition-all hover:opacity-85 active:scale-95"
+            style="background-color: #C27587; color: #fff; font-size: clamp(0.78rem, 3.2vw, 0.88rem); font-weight: 400; letter-spacing: 0.06em; text-decoration: none; white-space: nowrap;"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              style="width:18px; height:18px; flex-shrink:0; margin-right:8px;"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-2.079 3.218-4.402 3.218-7.327a7.5 7.5 0 10-15 0c0 2.925 1.274 5.248 3.218 7.327a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+                clip-rule="evenodd"></path>
+            </svg>
+            Ver Ubicación
+          </a>
+          <img
+            src="/imagenes/flor2.png"
+            alt=""
+            aria-hidden="true"
+            class="pointer-events-none select-none absolute"
+            style="width:60px; height:60px; object-fit:contain; right:0; z-index:10; transform: rotate(-90deg);"
+          />
+        </div>
+      </div>
+
       <!-- Flores abajo -->
-      <img src="/imagenes/flor2.png" alt="" aria-hidden="true"
+      <img
+        src="/imagenes/flor2.png"
+        alt=""
+        aria-hidden="true"
         class="pointer-events-none select-none"
         style="width: 40%; display: block; margin: 8px auto 0;"
         loading="lazy"
       />
     </div>
+
+    <!-- Indicador de scroll -->
+    <div
+      id="scroll-indicator"
+      class="pointer-events-none absolute left-0 right-0"
+      style="bottom: 0; height: 90px;
+             background: linear-gradient(to bottom, transparent, rgba(255,250,247,0.97));
+             border-radius: 0 0 1rem 1rem; z-index: 10;
+             display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+             padding-bottom: 0.6rem; transition: opacity 0.4s; opacity: 0;"
+    >
+      <div
+        id="scroll-flechas"
+        style="display: flex; flex-direction: column; align-items: center; gap: 0px;"
+      >
+        <svg
+          class="w-6 h-6"
+          style="color: #C9A545;"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M19 9l-7 7-7-7"></path>
+        </svg>
+        <svg
+          class="w-6 h-6"
+          style="color: rgba(201,165,69,0.45);"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </div>
+    </div>
   </div>
 </div>
+
+<style>
+  @keyframes bounce-scroll {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(6px);
+    }
+  }
+  #scroll-flechas {
+    animation: bounce-scroll 1.1s ease-in-out infinite;
+  }
+</style>
 
 <script>
   import { gsap } from "gsap";
@@ -328,9 +481,28 @@
   const btnAbrir = document.getElementById("btn-regalo-abrir");
   const btnCerrar = document.getElementById("btn-regalo-cerrar");
 
+  const scrollableCard = document.getElementById("modal-regalo-scroll");
+  const scrollIndicator = document.getElementById("scroll-indicator");
+
+  function updateScrollIndicator() {
+    if (!scrollableCard || !scrollIndicator) return;
+    const { scrollTop, scrollHeight, clientHeight } = scrollableCard;
+    const atBottom = scrollTop + clientHeight >= scrollHeight - 10;
+    const hasScroll = scrollHeight > clientHeight;
+    scrollIndicator.style.opacity = hasScroll && !atBottom ? "1" : "0";
+  }
+
+  scrollableCard?.addEventListener("scroll", updateScrollIndicator, {
+    passive: true,
+  });
+
   btnAbrir?.addEventListener("click", () => {
     modal!.style.display = "flex";
     document.body.style.overflow = "hidden";
+    setTimeout(() => {
+      scrollableCard?.scrollTo(0, 0);
+      updateScrollIndicator();
+    }, 60);
   });
 
   function cerrar() {
