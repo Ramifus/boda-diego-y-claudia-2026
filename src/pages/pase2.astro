@@ -1,0 +1,38 @@
+---
+// src/pages/index.astro
+import Layout from "../layouts/Layout.astro";
+import Portada from "../components/Portada.astro";
+import NombresFlores from "../components/NombresFlores.astro";
+import Contador from "../components/Contador.astro";
+import Fecha from "../components/Fecha.astro";
+import RecogidaInvitados from "../components/RecogidaInvitados.astro";
+import GaleriaFotos from "../components/GaleriaFotos.astro";
+import CodigoVestimenta from "../components/CodigoVestimenta.astro";
+import Tips from "../components/Tips.astro";
+import SugerenciaRegalos from "../components/SugerenciaRegalos.astro";
+import Restriccion from "../components/Restriccion.astro";
+import Confirmar from "../components/Confirmar.astro";
+import Itinerario from "../components/Itinerario.astro";
+import Pase from "../components/Pase.astro";
+---
+
+<Layout title="Boda">
+    <!-- PORTADA (se muestra primero, bloquea scroll) -->
+    <Portada />
+
+    <!-- CONTENIDO PRINCIPAL (oculto hasta que se presione el sobre) -->
+    <div id="contenido-principal">
+        <NombresFlores />
+        <Contador />
+        <Fecha />
+        <RecogidaInvitados />
+        <Pase numeroPases={2} />
+        <GaleriaFotos />
+        <Itinerario />
+        <CodigoVestimenta />
+        <Tips />
+        <SugerenciaRegalos />
+        <Restriccion />
+        <Confirmar />
+    </div>
+</Layout>
