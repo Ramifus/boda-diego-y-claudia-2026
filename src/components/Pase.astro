@@ -1,0 +1,199 @@
+---
+interface Props {
+  numeroPases: number;
+  nombreInvitado?: string;
+}
+
+const { numeroPases = 1, nombreInvitado = "" } = Astro.props;
+const textoPases = numeroPases === 1 ? "Pase" : "Pases";
+const textoPresencia =
+  numeroPases === 1
+    ? "Tu presencia es el mejor regalo para nosotros"
+    : numeroPases === 2
+      ? "Esperamos contar con la presencia de ambos"
+      : `Esperamos la presencia de los ${numeroPases}`;
+---
+
+<!-- ═══════ SECCIÓN ═══════ -->
+<section class="relative w-full flex items-center justify-center py-16 px-5">
+
+  <!-- ══ CARD ══ -->
+  <div
+    id="pase-card"
+    class="relative w-full max-w-xs mx-auto flex flex-col items-center text-center rounded-2xl shadow-2xl px-8 py-10"
+    style="background-color: rgba(255,255,255,0.96); z-index: 1;"
+  >
+    <!-- Ícono -->
+    <div id="pase-icono" class="mb-5 flex items-center justify-center">
+      <div
+        class="w-16 h-16 rounded-full flex items-center justify-center"
+        style="background-color: #fff; border: 1.5px solid #C9A545;
+               box-shadow: 0 0 0 4px rgba(201,165,69,0.1);"
+      >
+        <img
+          src="/iconos/reserva.png"
+          alt="Pase"
+          class="icono-dorado"
+          style="width: 2rem; height: 2rem;"
+        />
+      </div>
+    </div>
+
+    <!-- Título -->
+    <h2
+      id="pase-titulo"
+      class="font-crimson uppercase tracking-[0.2em] mb-5"
+      style="font-size: clamp(1.1rem, 5vw, 1.4rem); font-weight: 700; color: #C9A545;"
+    >
+      Pases Asignados
+    </h2>
+
+    <!-- Separador -->
+    <div
+      id="pase-sep"
+      class="w-full mb-6"
+      style="height: 1px; background-color: #F2D5DC;"
+    ></div>
+
+    <!-- Nombre invitado (opcional) -->
+    {nombreInvitado && (
+      <p
+        id="pase-nombre"
+        class="font-great-vibes mb-5"
+        style="font-size: clamp(1.6rem, 7vw, 2rem); color: #C27587; line-height: 1.2;"
+      >
+        {nombreInvitado}
+      </p>
+    )}
+
+    <!-- Número grande -->
+    <div id="pase-numero" class="flex flex-col items-center mb-5">
+      <span
+        class="font-great-vibes"
+        style="font-size: clamp(5rem, 22vw, 6.5rem); color: #C9A545; line-height: 1;
+               text-shadow: 0 4px 18px rgba(201,165,69,0.2);"
+      >
+        {numeroPases}
+      </span>
+      <p
+        class="font-crimson uppercase tracking-[0.3em]"
+        style="font-size: clamp(0.85rem, 4vw, 1rem); font-weight: 700; color: #C9A545; margin-top: -0.3rem;"
+      >
+        {textoPases}
+      </p>
+    </div>
+
+    <!-- Separador con rombo -->
+    <div class="flex items-center gap-2 mb-5 w-full justify-center">
+      <div style="height: 1px; width: 3rem; background-color: #C9A545; opacity: 0.4;"></div>
+      <span style="color: #C9A545; font-size: 0.45rem;">◆</span>
+      <div style="height: 1px; width: 3rem; background-color: #C9A545; opacity: 0.4;"></div>
+    </div>
+
+    <!-- Texto descriptivo -->
+    <p
+      id="pase-texto"
+      class="font-raleway mb-7"
+      style="font-size: clamp(0.9rem, 4vw, 1rem); font-weight: 300; color: #C27587;
+             line-height: 1.7; font-style: italic;"
+    >
+      {textoPresencia}
+    </p>
+
+    <!-- Íconos de personas -->
+    <div id="pase-personas" class="flex justify-center gap-3">
+      {Array.from({ length: numeroPases }).map((_, i) => (
+        <div
+          class="pase-persona w-10 h-10 rounded-full flex items-center justify-center"
+          style={`background-color: rgba(242,213,220,0.4); border: 1.5px solid #C27587; animation-delay: ${i * 0.15}s;`}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="#C27587"
+            class="w-5 h-5"
+          >
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+        </div>
+      ))}
+    </div>
+  </div>
+
+</section>
+
+<style>
+  .icono-dorado {
+    filter: invert(75%) sepia(35%) saturate(650%) hue-rotate(5deg) brightness(97%);
+  }
+
+  .pase-persona {
+    opacity: 0;
+    transform: scale(0);
+    animation: pop-in 0.5s ease-out forwards;
+  }
+
+  @keyframes pop-in {
+    0%   { opacity: 0; transform: scale(0); }
+    60%  { transform: scale(1.15); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+
+  const card = document.getElementById("pase-card");
+
+  gsap.set("#pase-card",     { opacity: 0, y: 50 });
+  gsap.set("#pase-icono",    { opacity: 0, y: -20, scale: 0.7 });
+  gsap.set("#pase-titulo",   { opacity: 0, scale: 0.85 });
+  gsap.set("#pase-sep",      { opacity: 0, scaleX: 0 });
+  gsap.set("#pase-numero",   { opacity: 0, scale: 0.6 });
+  gsap.set("#pase-texto",    { opacity: 0, y: 20 });
+  gsap.set("#pase-personas", { opacity: 0 });
+  if (document.getElementById("pase-nombre")) {
+    gsap.set("#pase-nombre", { opacity: 0, y: 15 });
+  }
+
+  let lastY = window.scrollY, bajando = true;
+  window.addEventListener("scroll", () => {
+    bajando = window.scrollY >= lastY;
+    lastY = window.scrollY;
+  }, { passive: true });
+
+  function resetPase() {
+    gsap.set("#pase-card",     { opacity: 0, y: 50 });
+    gsap.set("#pase-icono",    { opacity: 0, y: -20, scale: 0.7 });
+    gsap.set("#pase-titulo",   { opacity: 0, scale: 0.85 });
+    gsap.set("#pase-sep",      { opacity: 0, scaleX: 0 });
+    gsap.set("#pase-numero",   { opacity: 0, scale: 0.6 });
+    gsap.set("#pase-texto",    { opacity: 0, y: 20 });
+    gsap.set("#pase-personas", { opacity: 0 });
+    if (document.getElementById("pase-nombre")) {
+      gsap.set("#pase-nombre", { opacity: 0, y: 15 });
+    }
+  }
+
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) {
+        if (e.boundingClientRect.top > 0) resetPase();
+        return;
+      }
+      if (!bajando) return;
+
+      const tl = gsap.timeline();
+      tl.to("#pase-card",   { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0)
+        .to("#pase-icono",  { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "back.out(1.5)" }, 0.15)
+        .to("#pase-titulo", { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.4)" }, 0.25)
+        .to("#pase-sep",    { opacity: 1, scaleX: 1, duration: 0.6, ease: "power2.out", transformOrigin: "left" }, 0.35)
+        .to("#pase-numero", { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.6)" }, 0.45)
+        .to("#pase-texto",  { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.65)
+        .to("#pase-personas", { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.8);
+
+      if (document.getElementById("pase-nombre")) {
+        tl.to("#pase-nombre", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.3);
+      }
+    });
+  }, { threshold: 0.2 }).observe(card!);
+</script>

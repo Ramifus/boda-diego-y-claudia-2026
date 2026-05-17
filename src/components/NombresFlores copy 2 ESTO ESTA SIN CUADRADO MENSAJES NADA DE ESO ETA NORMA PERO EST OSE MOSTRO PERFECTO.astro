@@ -76,26 +76,6 @@ const MES_ANO = "Agosto 2026";
       Te elijo hoy y por el resto de mi vida
     </p>
 
-    <!-- Versículo -->
-    <div
-      id="nf-versiculo"
-      class="mt-6 px-5 py-4"
-      style="border: 1px solid rgba(201,165,69,0.55); border-radius: 6px; max-width: 272px;"
-    >
-      <p
-        class="font-raleway text-white/75"
-        style="font-size: 1rem; font-weight: 200; line-height: 1.75; font-style: italic; letter-spacing: 0.02em;"
-      >
-        "Así que no son ya más dos, sino una sola carne; por tanto, lo que Dios ha unido, no lo separe el hombre."
-      </p>
-      <p
-        class="font-raleway mt-2"
-        style="font-size: 1rem; font-weight: 300; color: rgba(201,165,69,0.7); letter-spacing: 0.1em; text-align: right;"
-      >
-        Mateo 19:6
-      </p>
-    </div>
-
     <!-- Flecha scroll -->
     <div class="mt-8 flex flex-col items-center gap-1" id="flecha-scroll">
       <svg
@@ -180,7 +160,6 @@ const MES_ANO = "Agosto 2026";
   gsap.set("#nf-nombre2", { opacity: 0, x: 60 });
   gsap.set("#nf-amp",     { opacity: 0, scale: 0, rotation: -180 });
   gsap.set(["#nf-subtitulo","#nf-frase"], { opacity: 0, y: 30 });
-  gsap.set("#nf-versiculo", { opacity: 0, y: 20 });
   gsap.set("#flecha-scroll", { opacity: 0 });
 
   const tl = gsap.timeline({ delay: 0.3 });
@@ -190,9 +169,8 @@ const MES_ANO = "Agosto 2026";
     .to("#nf-amp",       { opacity: 1, scale: 1, rotation: 0, duration: 0.8, ease: "back.out(1.7)" }, 0.5)
     .to(["#nf-linea-top","#nf-linea-bot"], { opacity: 1, scaleX: 1, duration: 0.7, ease: "power2.out", stagger: 0.1 }, 0.6)
     .to("#nf-subtitulo", { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, 0.85)
-    .to("#nf-frase",      { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, 1)
-    .to("#nf-versiculo",  { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, 1.15)
-    .to("#flecha-scroll", { opacity: 1, duration: 0.6, ease: "power2.out" }, 1.4);
+    .to("#nf-frase",     { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, 1)
+    .to("#flecha-scroll",{ opacity: 1, duration: 0.6, ease: "power2.out" }, 1.2);
 
   document.addEventListener("DOMContentLoaded", () => {
     const botonToggle = document.getElementById("toggle-musica-global");

@@ -12,6 +12,8 @@ import Tips from "../components/Tips.astro";
 import SugerenciaRegalos from "../components/SugerenciaRegalos.astro";
 import Restriccion from "../components/Restriccion.astro";
 import Confirmar from "../components/Confirmar.astro";
+import Itinerario from "../components/Itinerario.astro";
+import Pase from "../components/Pase.astro";
 ---
 
 <Layout title="Boda">
@@ -24,7 +26,9 @@ import Confirmar from "../components/Confirmar.astro";
         <Contador />
         <Fecha />
         <RecogidaInvitados />
+        <Pase numeroPases={1} />
         <GaleriaFotos />
+        <Itinerario />
         <CodigoVestimenta />
         <Tips />
         <SugerenciaRegalos />
